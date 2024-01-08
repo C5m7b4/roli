@@ -1,0 +1,9 @@
+{
+    "plugins":[
+      ["@babel/plugin-transform-react-jsx", {
+        "pragma":"roli.createElement",
+        "throwIfNamespace": false
+      }],
+    ],
+    "presets": ["@babel/preset-env"]
+  }
