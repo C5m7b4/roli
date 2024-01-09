@@ -10,8 +10,12 @@ body{
     color: rgb(189, 179, 179);
 }
 .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 800px;
     margin: 0 auto;
+    margin-top: 10px;
 }
 
 .header {

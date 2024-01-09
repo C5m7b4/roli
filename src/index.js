@@ -10,21 +10,57 @@ const test = h("div", { className: "test" }, [
     h("button", { class: "btn btn-secondary" }, ["increment"]),
   ]),
 ]);
-console.log("test", test);
+// console.log("test", test);
 
-createApp({
-  state: 0,
-  reducers: {
-    add: (state, amount) => state + amount,
-  },
-  view: (state, emit) =>
+// createApp({
+//   state: 0,
+//   reducers: {
+//     add: (state, amount) => state + amount,
+//   },
+//   view: (state, emit) =>
+//     h(
+//       "button",
+//       {
+//         on: {
+//           click: () => emit("add", 1),
+//         },
+//       },
+//       [hString(state)]
+//     ),
+// }).mount(document.getElementById("app"));
+
+const initialState = {
+  counter: 0,
+};
+const reducers = {
+  increment: (state) => ({ ...state, counter: state.counter + 1 }),
+  decrement: (state) => ({ ...state, counter: state.count - 1 }),
+};
+
+const view = (state, emit) => {
+  return h("div", { class: "wrapper" }, [
     h(
       "button",
       {
         on: {
-          click: () => emit("add", 1),
+          click: () => emit("decrement"),
         },
       },
-      [hString(state)]
+      ["-"]
     ),
-}).mount(document.getElementById("app"));
+    h("span", {}, [hString(state.counter)]),
+    h(
+      "button",
+      {
+        on: {
+          click: () => emit("increment"),
+        },
+      },
+      ["+"]
+    ),
+  ]);
+};
+
+createApp({ state: initialState, reducers, view }).mount(
+  document.getElementById("app")
+);
